@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% load staticfiles %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Jekyll v3.8.5">
+        <title>Achyuth's Portfolio</title>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    </head>
+    <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="{% url 'home' %}">Achyuth Batter</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link js-scroll-trigger" href="#about">About</a>
+                    <a class="nav-item nav-link" href="https://www.linkedin.com/in/achyuth-batter" target="_blank">LinkedIn</a>
+                    <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+            <h1 class="jumbotron-heading">Hi I'm Achyuth</h1>
+            <img src="{% static 'download.png'%}" height=200 width=200 class="img-fluid">
+            <p class="lead text-muted">I am looking for a job in IT to kick start my career</p>
+
+            <p>
+                <a href="mailto:achyuth.bhatter@gmail.com" class="btn btn-primary my-2">Email Me</a>
+            </p>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light" id="about">
+            <div class="container">
+                <div class="row">
+                    <h5>Here are my Cool Projects</h5>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {%  for job in jobs %}
+                    <div class="col-md-4 open">
+                        <div class="card mb-4 shadow-sm">
+                            <img class="card-img-top" src="{{ job.image.url }}" />
+                            <div class="card-body">
+                                <p class="card-text">{{ job.summary }}</p>
+                                <p style="font-weight: bold">Created on:</p>
+                                <p class="card-text">{{ job.date }}</p>
+                                <br />
+                                <a href="{% url 'jdetail' job.id  %}">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            
+        </div>
+    </main>
+
+    <footer class="text-muted">
+        <div class="container text-center">
+            <p>&copy; Achyuth Batter {% now "Y" %}</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</html>
